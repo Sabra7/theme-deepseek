@@ -20,9 +20,9 @@
  *   2. call `installUsageWidget(ctx, require);` from `apply()` after
  *      `installIcons(ctx);`.
  *
- * No extra `inject` export is required: `installUsageWidget` waits for the
- * shell's `slots` service itself (via `ctx.inject(['slots'], …)`) when the
- * service is not there yet.
+ * The host module declares `exports.inject = ['slots']`, and `installUsageWidget`
+ * also waits for the `slots` service via `ctx.inject(['slots'], …)` when that is
+ * the available path. Never touch `ctx.slots` without declaring the inject.
  *
  * The test file `usage-widget-test.html` reads the helper API from
  * `window.__dshNeonUsageWidget`; inside DSH that global is not touched
@@ -735,9 +735,9 @@ function installNeonUsageStyle() {
  * Register the usage cluster into the composer dock.
  *
  * The plugin factory's `apply()` may run before the shell's `slots` service is
- * installed, so this waits for it through `ctx.inject(['slots'], …)` when that
- * is available; a context that already exposes `slots` registers immediately.
- * No `exports.inject = ['slots']` change is needed in the host plugin.
+ * installed. The host module declares `exports.inject = ['slots']`, and this
+ * also waits through `ctx.inject(['slots'], …)` when that path is available.
+ * Never read `ctx.slots` without declaring the inject.
  *
  * @param {any} ctx cordis client context
  * @param {(id:string) => any} require the plugin factory's require
@@ -775,10 +775,10 @@ function installUsageWidget(ctx, require, options) {
     }, Component));
   };
 
-  if (ctx.slots && typeof ctx.slots.inject === 'function') {
-    register(ctx);
-  } else if (typeof ctx.inject === 'function') {
+  if (typeof ctx.inject === 'function') {
     ctx.inject(['slots'], register);
+  } else if (ctx.slots && typeof ctx.slots.inject === 'function') {
+    register(ctx);
   } else {
     neonUsageWarnOnce('slots service unavailable; usage widget not registered');
     return null;

@@ -136,7 +136,14 @@ ${usage}
       injectCss(ctx);
       injectFont(ctx);
       installIcons(ctx);
-      if (typeof installUsageWidget === 'function') installUsageWidget(ctx, require);
+      // The widget is optional and non-fatal: it registers through
+      // ctx.inject(['slots'], …) without touching ctx.slots directly, and any
+      // failure here must never prevent the CSS/icons above from applying.
+      try {
+        if (typeof installUsageWidget === 'function') installUsageWidget(ctx, require);
+      } catch (error) {
+        console.warn('dsh-theme-neon: usage widget skipped', error);
+      }
     }
 
     exports.apply = apply;

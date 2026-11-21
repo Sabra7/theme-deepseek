@@ -2,46 +2,72 @@
  * Neon — theme tweaks (DeepSeek Harness)
  * نيون — تعديلات
  * ------------------------------------------------------------------
- * User request:
- *   1) dark-mode chat/transcript ground = pure black (#000), everything
- *      else keeps the current Neon surfaces;
- *   2) file names/paths in the chat take the user-message accent colour.
+ *   1) dark-mode chat/transcript ground = pure black (#000);
+ *   2) chat file names/paths = user-message accent;
+ *   3) folder names in the sidebar workspace tree = send-button colour;
+ *   4) glass: 50% transparency + blur for text surfaces, dark navy surfaces
+ *      mix 5% dark grey (#4a4a4a).
  *
- * Load AFTER neon-dsh.css (Settings → General → custom CSS, or append in
- * the theme plugin). Delete this file to revert — it is two rules only and
- * touches no layout property.
- *
- * Tokens come from neon-dsh.css; nothing here is hard-coded except the
- * requested #000 ground, which is intentionally pure black, not a token.
+ * Load AFTER neon-dsh.css. Delete this file to revert.
  * ------------------------------------------------------------------ */
 
-/* 1) Dark-mode conversation ground.
-   DSH paints the ground on the conversation root (ui-conversation
-   ConversationRoot `.root`, background: var(--dsw-alias-bg-base)); the
-   scrollport [data-conversation-scroll] (.scrollBody) and ChatView's
-   `.scroll` are transparent. Painting the scrollport therefore turns only
-   the transcript area black: the session header stays above it, the sidebar
-   is outside it, the composer seat paints its own --dsw-alias-bg-base
-   gradient, and portaled menus never inherit it. Light mode is untouched
-   because the rule is gated on body[data-ds-dark-theme]. */
+/* 1) Dark-mode conversation ground. */
 body[data-ds-dark-theme] [data-conversation-scroll] {
   background-color: #000;
 }
 
-/* 2) File names and file paths inside the chat flow = user-message colour.
-   The user-message accent in the Neon design is --dsw-alias-brand-primary
-   (#466367 dark / #0e7490 light, the same visible colour user bubbles carry
-   in the theme design). Selectors target CSS-module classes by their stable
-   name prefix (build hashes change): attachment card `.fileName`
-   (MessageItem.module.css), context/diff card `.filePath`
-   (ContextBody.module.css), markdown file links and tool-row file links
-   `.fileLink` / `.fileTargetLink`. All are scoped under
-   [data-conversation-scroll] [data-chat-flow] so the workspace tree,
-   sidebar file lists and the composer's own chips keep their labels. */
+/* 2) Chat file names/paths = user-message accent. */
 [data-conversation-scroll] [data-chat-flow]
   :is([data-chat-flow-kind="user"], [data-chat-flow-kind="steering"]) [class*="fileName"],
 [data-conversation-scroll] [data-chat-flow] [class*="filePath"],
 [data-conversation-scroll] [data-chat-flow] [class*="fileLink"],
 [data-conversation-scroll] [data-chat-flow] [class*="fileTargetLink"] {
   color: var(--dsw-alias-brand-primary);
+}
+
+/* 3) Folder names in the sidebar workspace tree = send-button colour. */
+[data-files-entry="directory"] [class*="name"] {
+  color: var(--dsw-alias-button-info-fill);
+}
+
+/* 4) Glass: 50% transparency + blur.
+   DSH floats menus/dialogs/panels with
+   backdrop-filter: var(--dsw-menu-backdrop-filter); we also re-assert it on the
+   standard floating ARIA roles so every menu/dialog/tooltip blurs even when a
+   surface does not consume the variable. */
+body, body[data-ds-dark-theme] {
+  --dsw-menu-backdrop-filter: blur(24px) saturate(1.2);
+  --dsw-mask-blur: blur(24px);
+}
+
+[role="dialog"],
+[role="menu"],
+[role="tooltip"],
+[role="listbox"],
+[role="combobox"] {
+  backdrop-filter: var(--dsw-menu-backdrop-filter);
+  -webkit-backdrop-filter: var(--dsw-menu-backdrop-filter);
+}
+
+/* light — 50% opacity (50% transparent) */
+body {
+  --dsw-alias-bg-layer-1: rgba(255, 255, 255, 0.5);
+  --dsw-alias-bg-layer-2: rgba(255, 255, 255, 0.5);
+  --dsw-alias-bg-layer-3: rgba(241, 242, 242, 0.5);
+  --dsw-alias-bg-layer-4: rgba(241, 242, 242, 0.5);
+  --dsw-specific-bubble: rgba(242, 247, 249, 0.5);
+  --dsw-specific-input-major: rgba(255, 255, 255, 0.5);
+  --dsw-specific-menu: rgba(253, 254, 255, 0.5);
+}
+
+/* dark — 50% opacity + 5% dark grey over the navy */
+body[data-ds-dark-theme] {
+  --dsw-alias-bg-base: #0a0b10;
+  --dsw-alias-bg-layer-1: rgba(16, 19, 26, 0.5);
+  --dsw-alias-bg-layer-2: rgba(16, 19, 26, 0.5);
+  --dsw-alias-bg-layer-3: rgba(37, 41, 48, 0.5);
+  --dsw-alias-bg-layer-4: rgba(37, 41, 48, 0.5);
+  --dsw-specific-bubble: rgba(19, 24, 30, 0.5);
+  --dsw-specific-input-major: rgba(16, 19, 26, 0.5);
+  --dsw-specific-menu: rgba(15, 18, 26, 0.5);
 }
