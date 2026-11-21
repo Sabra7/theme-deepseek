@@ -1,0 +1,6 @@
+# Neon — Mishkat theme for DeepSeek Harness
+# Inserts the client bundle; the browser half applies the always-on CSS and
+# replaces the selected product icons.
+- insert:
+    - id: theme-neon
+      name: 'dsh-theme-neon'

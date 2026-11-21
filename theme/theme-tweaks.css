@@ -1,0 +1,47 @@
+/*
+ * Neon — theme tweaks (DeepSeek Harness)
+ * نيون — تعديلات
+ * ------------------------------------------------------------------
+ * User request:
+ *   1) dark-mode chat/transcript ground = pure black (#000), everything
+ *      else keeps the current Neon surfaces;
+ *   2) file names/paths in the chat take the user-message accent colour.
+ *
+ * Load AFTER neon-dsh.css (Settings → General → custom CSS, or append in
+ * the theme plugin). Delete this file to revert — it is two rules only and
+ * touches no layout property.
+ *
+ * Tokens come from neon-dsh.css; nothing here is hard-coded except the
+ * requested #000 ground, which is intentionally pure black, not a token.
+ * ------------------------------------------------------------------ */
+
+/* 1) Dark-mode conversation ground.
+   DSH paints the ground on the conversation root (ui-conversation
+   ConversationRoot `.root`, background: var(--dsw-alias-bg-base)); the
+   scrollport [data-conversation-scroll] (.scrollBody) and ChatView's
+   `.scroll` are transparent. Painting the scrollport therefore turns only
+   the transcript area black: the session header stays above it, the sidebar
+   is outside it, the composer seat paints its own --dsw-alias-bg-base
+   gradient, and portaled menus never inherit it. Light mode is untouched
+   because the rule is gated on body[data-ds-dark-theme]. */
+body[data-ds-dark-theme] [data-conversation-scroll] {
+  background-color: #000;
+}
+
+/* 2) File names and file paths inside the chat flow = user-message colour.
+   The user-message accent in the Neon design is --dsw-alias-brand-primary
+   (#466367 dark / #0e7490 light, the same visible colour user bubbles carry
+   in the theme design). Selectors target CSS-module classes by their stable
+   name prefix (build hashes change): attachment card `.fileName`
+   (MessageItem.module.css), context/diff card `.filePath`
+   (ContextBody.module.css), markdown file links and tool-row file links
+   `.fileLink` / `.fileTargetLink`. All are scoped under
+   [data-conversation-scroll] [data-chat-flow] so the workspace tree,
+   sidebar file lists and the composer's own chips keep their labels. */
+[data-conversation-scroll] [data-chat-flow]
+  :is([data-chat-flow-kind="user"], [data-chat-flow-kind="steering"]) [class*="fileName"],
+[data-conversation-scroll] [data-chat-flow] [class*="filePath"],
+[data-conversation-scroll] [data-chat-flow] [class*="fileLink"],
+[data-conversation-scroll] [data-chat-flow] [class*="fileTargetLink"] {
+  color: var(--dsw-alias-brand-primary);
+}

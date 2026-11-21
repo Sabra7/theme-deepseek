@@ -1,0 +1,28 @@
+{
+  "name": "mishkat-theme-studio",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Mishkat: a bilingual (AR/EN) single-file theme atelier for DeepSeek Harness, web design tokens, and Vencord/ClearVision themes — plus the DSH theme-authoring reference.",
+  "type": "module",
+  "license": "MIT",
+  "keywords": [
+    "dsh-plugin",
+    "deepseek-harness",
+    "agent-skill",
+    "theme",
+    "configurator",
+    "arabic"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "files": [
+    "SKILL.md",
+    "assets",
+    "references",
+    "scripts",
+    "cordis.patch.yml"
+  ]
+}

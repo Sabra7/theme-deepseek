@@ -1,0 +1,23 @@
+/*
+ * Neon — optional terminal backdrop
+ * Paste after neon-dsh.css (or import it second) if you want the CRT grid.
+ * The main theme keeps a flat, exact ground; this layer makes the app canvas
+ * slightly translucent so the scanlines can show through the shell.
+ */
+body {
+  background-color: #eef7fb;
+  background-image:
+    radial-gradient(900px 600px at 50% -10%, rgba(14, 116, 144, 0.07), transparent 62%),
+    repeating-linear-gradient(0deg, rgba(8, 19, 26, 0.028) 0 1px, transparent 1px 4px);
+  background-attachment: fixed;
+  --dsw-alias-bg-base: rgba(238, 247, 251, 0.95);
+}
+
+body[data-ds-dark-theme] {
+  background-color: #07080d;
+  background-image:
+    radial-gradient(900px 600px at 50% -10%, rgba(70, 99, 103, 0.22), transparent 62%),
+    repeating-linear-gradient(0deg, rgba(93, 234, 173, 0.04) 0 1px, transparent 1px 4px);
+  background-attachment: fixed;
+  --dsw-alias-bg-base: rgba(7, 8, 13, 0.93);
+}

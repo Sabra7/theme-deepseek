@@ -1,0 +1,33 @@
+{
+  "name": "dsh-theme-neon",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Neon — a sharp black/teal theme for DeepSeek Harness, with Lucide icon replacements. Generated from a Mishkat brief.",
+  "type": "module",
+  "license": "MIT",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-renderer"
+      ]
+    }
+  },
+  "files": [
+    "lib/index.js",
+    "lib/client.js",
+    "cordis.patch.yml",
+    "theme.css",
+    "icons.json",
+    "README.md"
+  ]
+}

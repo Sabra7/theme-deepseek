@@ -1,0 +1,110 @@
+{
+  "version": 1,
+  "lang": "ar",
+  "target": "dsh",
+  "section": "brief",
+  "preset": "neon",
+  "paletteMode": "dark",
+  "meta": {
+    "nameAr": "نيون",
+    "nameEn": "Neon",
+    "slug": "neon",
+    "descAr": "أسود عميق، سايان كهربائي، وحواف حادة.",
+    "descEn": "Deep black, electric cyan, and sharp edges.",
+    "tags": ["ليل", "سايان", "ليزر"],
+    "notes": ""
+  },
+  "colors": {
+    "light": {
+      "bg": "#eef7fb",
+      "surface": "#ffffff",
+      "text": "#08131a",
+      "accent": "#0e7490",
+      "accentText": "#ffffff",
+      "sidebar": "#e0f0f7",
+      "code": "#e6f3f8",
+      "warn": "#9a5b00",
+      "error": "#b3261e",
+      "success": "#047857"
+    },
+    "dark": {
+      "bg": "#07080d",
+      "surface": "#0d1018",
+      "text": "#e8f7ff",
+      "accent": "#466367",
+      "accentText": "#ffffff",
+      "sidebar": "#090b12",
+      "code": "#0a0d14",
+      "warn": "#fbbf24",
+      "error": "#fb7185",
+      "success": "#5deaad"
+    }
+  },
+  "overrides": {
+    "light": {
+      "surfaceAlt": "#f1f2f2",
+      "text2": "#485359",
+      "text3": "#727c82",
+      "codeBanner": "#d9e6eb",
+      "bubble": "#f2f7f9",
+      "menu": "#fdfeff"
+    },
+    "dark": {
+      "surfaceAlt": "#23272f",
+      "text2": "#a5afb6",
+      "text3": "#788086",
+      "codeBanner": "#171b22",
+      "bubble": "#10151c",
+      "menu": "#0c0f17"
+    }
+  },
+  "autoAccent": false,
+  "type": {
+    "arabic": "System Arabic",
+    "latin": "System UI",
+    "code": "Space Mono",
+    "size": 13,
+    "codeSize": 11,
+    "leading": 1.6,
+    "weight": 400,
+    "loadFonts": true
+  },
+  "icons": {
+    "pack": "lucide",
+    "stroke": 1.8,
+    "corner": "round",
+    "selected": ["send", "search", "settings", "plus", "close", "check", "copy", "sidebar", "sparkle", "attach", "mic", "user"]
+  },
+  "form": {
+    "radius": 7,
+    "shadow": "deep",
+    "blur": 0,
+    "saturate": 100,
+    "density": "compact",
+    "motion": "calm",
+    "border": "hairline",
+    "borderStrength": 25,
+    "texture": "none",
+    "glassEdges": false
+  },
+  "backdrop": {
+    "kind": "preset",
+    "preset": "terminal",
+    "url": "",
+    "dim": 0.7,
+    "blur": 0,
+    "saturate": 100
+  },
+  "preview": {
+    "mode": "dark",
+    "lang": "ar",
+    "view": "chat",
+    "mobile": false
+  },
+  "targetOptions": {
+    "dsh": { "selector": "always", "lockType": true, "iconReplacements": true },
+    "web": { "prefix": "mk", "components": true },
+    "vencord": { "importBase": true, "messageRadius": 26, "messageGap": 12, "homeIcon": "" }
+  },
+  "output": { "tab": "brief" }
+}

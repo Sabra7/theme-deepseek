@@ -1,0 +1,103 @@
+{
+  "schema": "mishkat/dsh-theme/v1",
+  "target": "dsh",
+  "theme": {
+    "id": "neon",
+    "name": "Neon",
+    "nameZh": "نيون",
+    "desc": "Deep black, electric cyan, and sharp edges.",
+    "descZh": "أسود عميق، سايان كهربائي، وحواف حادة.",
+    "tags": [
+      "ليل",
+      "سايان",
+      "ليزر"
+    ],
+    "light": {
+      "bg": "#eef7fb",
+      "surface": "#ffffff",
+      "surfaceAlt": "#f1f2f2",
+      "text": "#08131a",
+      "text2": "#485359",
+      "text3": "#727c82",
+      "border": "rgba(8, 19, 26, 0.073)",
+      "accent": "#0e7490",
+      "accentText": "#ffffff",
+      "accentHover": "#0c657d",
+      "code": "#e6f3f8",
+      "codeBanner": "#d9e6eb",
+      "sidebar": "#e0f0f7",
+      "warn": "#9a5b00",
+      "error": "#b3261e",
+      "success": "#047857"
+    },
+    "dark": {
+      "bg": "#07080d",
+      "surface": "#0d1018",
+      "surfaceAlt": "#23272f",
+      "text": "#e8f7ff",
+      "text2": "#a5afb6",
+      "text3": "#788086",
+      "border": "rgba(232, 247, 255, 0.073)",
+      "accent": "#466367",
+      "accentText": "#ffffff",
+      "accentHover": "#647c7f",
+      "code": "#0a0d14",
+      "codeBanner": "#171b22",
+      "sidebar": "#090b12",
+      "warn": "#fbbf24",
+      "error": "#fb7185",
+      "success": "#5deaad"
+    }
+  },
+  "typography": {
+    "arabic": "System Arabic",
+    "latin": "System UI",
+    "code": "Space Mono",
+    "size": 13,
+    "codeSize": 11,
+    "leading": 1.6,
+    "weight": 400,
+    "loadFonts": true
+  },
+  "icons": {
+    "pack": "lucide",
+    "stroke": 1.8,
+    "corner": "round",
+    "selected": [
+      "send",
+      "search",
+      "settings",
+      "plus",
+      "close",
+      "check",
+      "copy",
+      "sidebar",
+      "sparkle",
+      "attach",
+      "mic",
+      "user"
+    ],
+    "note": "Product icons only. Complete SVG documents with viewBox; no style or script."
+  },
+  "form": {
+    "radius": 7,
+    "shadow": "deep",
+    "blur": 0,
+    "saturate": 100,
+    "density": "compact",
+    "motion": "calm",
+    "border": "hairline",
+    "borderStrength": 25,
+    "texture": "none",
+    "glassEdges": false
+  },
+  "backdrop": {
+    "kind": "preset",
+    "preset": "terminal",
+    "url": "",
+    "dim": 0.7,
+    "blur": 0,
+    "saturate": 100
+  },
+  "apply": "Settings → General → custom CSS (dsh-custom-css-lite)"
+}

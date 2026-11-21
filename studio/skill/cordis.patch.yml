@@ -1,0 +1,9 @@
+# Mishkat Theme Studio — a skill-only bundle.
+# It reuses DSH's filesystem skill provider and points it at this package root,
+# where SKILL.md lives. No client bundle, no host API, no network.
+- insert:
+    - id: mishkat-theme-studio-skill
+      name: '@deepseek-ai/dsh-skill-filesystem'
+      config:
+        providerName: mishkat-theme-studio
+        bundledSkillDir: !!js process.getBuiltinModule('node:path').dirname(process.getBuiltinModule('node:module').createRequire(baseUrl).resolve('mishkat-theme-studio/package.json'))
